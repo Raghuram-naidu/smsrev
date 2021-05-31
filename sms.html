@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS</title>
+</head>
+<style>
+    #cont{
+   width:98%;
+   height:600px;
+   margin:auto;
+   border:1px;
+   }
+   #box1{
+   width:20%;
+   height:80%;
+   margin:7% 3%;
+   border:1px ;  
+   float:left;
+   }
+   #box1>input{
+   width:90%;
+   height:5%;
+   margin:5% 5%;
+   }
+   #box1>button{
+   width:80%;
+   height:5%;
+   margin:5% 5%; 
+   color:chartreuse;
+   border:1px solid black
+   }
+   #box2{
+    width:72%;
+   height:600px;
+   border:1px ;
+   float:left;
+   display:flex;
+   flex-wrap: wrap;
+   }
+   #box2>div{
+     flex-basis: 30%;
+     margin: 1.5%;
+      
+     flex-direction: row;
+     border: 1px ;
+  }
+  .bx {
+       
+       border: 1px solid black;
+     }
+
+ .bx>img {
+            width: 18vw;
+            height: 18vw;
+            margin-left:5.5%;
+            
+        }
+
+.upd {
+            float: right;
+        }
+   
+</style>
+<body>
+   <div id=cont>
+       <div id=box1>
+           <input type=text id=name placeholder="Name"></input>
+           <input type=number id=age placeholder="Age"></input>
+           <input type=text id=city placeholder="City"></input>
+           <input type=number id=contact placeholder="Contact Number"></input>
+           <input type=url id=img placeholder="Image Optional"></input>
+           <button type=submit id=adduser>Add User</button>
+       </div>
+       <div id=box2></div>
+   </div>
+</body>
+</html>
+<script>
+    var btn=document.getElementById('adduser')
+    btn.addEventListener('click',sms)
+    var c=0
+    function sms(){
+        c++
+        var name=document.getElementById('name').value
+        var age = document.getElementById('age').value
+        var city = document.getElementById('city').value
+        var contact = document.getElementById('contact').value
+        var img=document.getElementById('img').value
+        
+        
+        var j = document.createElement('div')
+         var div = document.getElementById('box2')
+        j.innerHTML = `<div id="${c}" class="bx">
+       <h3 id="name${c}">${name}</h3>
+       <h3 >${age} </h3>
+       <h3>${city}</h3>
+       <h3>${contact}</h3>
+       <img src=${img}>
+       <button id="remove${c}" class="rm" onclick="this.parentNode.parentNode.remove(this.parentNode.parentNode)">Remove</button>
+      <button id="update${c}" class="upd" onclick="date(${c})">Update</button>
+      </div>`
+                div.appendChild(j)
+            }
+            function date(c) {
+             
+                var str = "name" + c;
+
+                var new_name = prompt("Enter new_name");
+                var name = document.getElementById(str);
+
+                name.innerHTML = `<h3 id="name${c}">${new_name}</h3>`;
+            }
+</script>
